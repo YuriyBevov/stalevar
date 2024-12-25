@@ -1,0 +1,38 @@
+{
+  "name": "stalevar",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview",
+    "img-convert": "node img-converter.js",
+    "w3c": "html-validator dest --quiet"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^6.0.0",
+    "@spiriit/vite-plugin-svg-spritemap": "^2.2.4",
+    "@vituum/vite-plugin-pug": "^1.1.0",
+    "autoprefixer": "^10.4.20",
+    "cli-progress": "^3.12.0",
+    "glob": "^11.0.0",
+    "postcss": "^8.4.47",
+    "postcss-calc": "^10.0.2",
+    "postcss-combine-duplicated-selectors": "^10.0.3",
+    "postcss-discard-comments": "^7.0.3",
+    "postcss-sort-media-queries": "^5.2.0",
+    "sharp": "^0.33.5",
+    "svgo": "^3.3.2",
+    "vite": "^5.4.1",
+    "vite-plugin-image-optimizer": "^1.1.8",
+    "vite-plugin-inspect": "^0.8.7",
+    "w3c-html-validator": "^1.8.2"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^5.0.36",
+    "gsap": "file:gsap-bonus.tgz",
+    "imask": "^7.6.1",
+    "swiper": "^11.1.14"
+  }
+}

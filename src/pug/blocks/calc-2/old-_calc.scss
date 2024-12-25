@@ -1,0 +1,154 @@
+/* purgecss start ignore */
+
+@forward "@styles/_extends/flexbox";
+@forward "@styles/_extends/resets";
+@use "@styles/_mixins/text-truncate" as *;
+
+:root {
+  --step-slide-transition: .4s ease-in;
+}
+
+.lw-calc * {
+  // outline: 1px solid red;
+  
+}
+
+.lw-calc {
+  @extend %flex-column;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(20px, 3vw, 40px) 0;
+
+  .swiper-slide {
+    width: 225px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__step {
+    width: 100%;
+  }
+
+  &__steps-wrapper {
+    width: fit-content;
+    @extend %flex-align;
+    justify-content: space-between;
+    gap: clamp(3px, 2.4vw, 28px);
+  }
+
+  &__step {
+    position: relative;
+    overflow: hidden;
+
+    @extend %flex-align;
+
+    width: 225px;
+    height: 100%;
+    min-height: 103px;
+    border: 3px solid var(--black);
+
+    &.completed {
+      cursor: pointer;
+    }
+
+    &:not(.swiper-slide-active){
+      opacity: .1;
+    }
+
+    &-num {
+      @extend %flex-center;
+      flex-direction: column;
+
+      width: 60px;
+      min-width: 60px;
+      
+      padding: 10px;
+      color: var(--white);
+
+      span {
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 700;
+        margin-left: -7px;
+      }
+
+      small {
+        font-size: 12px;
+        line-height: 1;
+        font-weight: 700;
+      }
+    }
+
+    &-value {
+      position: relative;
+      @extend %flex-column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 4px;
+
+      width: 160px;
+
+      padding: 10px;
+
+      font-weight: 700;
+      font-size: 16px;
+      overflow: hidden;
+
+      span {
+        position: relative;
+        display: block;
+        margin-top: 3px;
+
+        @include text-truncate(2);
+
+        color: var(--black);
+
+        z-index: 11;
+      }
+
+      small {
+        @include text-truncate(2);
+
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--white);
+
+        height: 0;
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    // visually-hidden
+    // &:not(.completed) {
+    //   .lw-calc__step-value small {
+    //     position: absolute;
+    //     width: 1px;
+    //     height: 1px;
+    //     margin: -1px;
+    //     border: 0;
+    //     padding: 0;
+    //     white-space: nowrap;
+    //     clip-path: inset(100%);
+    //     clip: rect(0 0 0 0);
+    //     overflow: hidden;
+    //   }
+    // }   
+  }
+
+  // &__field {
+  //   display: none;
+
+  //   &.active {
+  //     display: flex;
+  //   }
+  // }
+
+  // &__btn {
+  //   &.disabled {
+  //     visibility: hidden;
+  //   }
+  // }
+}
+
+
+/* purgecss end ignore */

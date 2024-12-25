@@ -1,0 +1,11 @@
+extends ./pug/layouts/main-layout
+
+block variables
+  -
+    const title = "stalevar-calc"
+    const description = ""
+    const keywords = ""
+    const styles = ['./styles/template-styles','./styles/index']
+
+block content
+  include ./pug/blocks/calc/calc

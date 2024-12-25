@@ -1,0 +1,265 @@
+/* purgecss start ignore */
+
+@forward "@styles/_extends/flexbox";
+@forward "@styles/_extends/resets";
+@use "@styles/_mixins/text-truncate" as *;
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+html:has(.lw-calc) {
+  scrollbar-gutter: stable;
+}
+
+.lw-calc {
+  position: relative;
+  @extend %flex-column;
+  gap: 20px;
+
+  container: lw-calc / inline-size;
+
+  .swiper {
+    width: 100%;
+  }
+
+  &__btn {
+    @extend %btn-reset;
+    @extend %flex-center;
+
+    font-size: 17px;
+    font-weight: 400;
+    padding: 12px 20px 10px;
+    
+    width: 100%;
+    max-width: 220px;
+    min-height: 60px;
+    border-radius: 1px;
+    border: 1px solid transparent;
+    color: var(--white);
+    background-color: var(--primary);
+    transition: background-color 0.3s linear;
+
+    &-row {
+      @extend %flex-align;
+      gap: 16px;
+      justify-content: flex-end;
+      margin-top: clamp(30px, 4vw, 80px);
+    }
+
+    &:disabled {
+      cursor: initial;
+      background-color: var(--muted);
+    }
+
+    &--outlined {
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      background-color: transparent;
+
+      &:disabled {
+        cursor: initial;
+        background-color: transparent;
+      }
+    }
+
+    &--submit {
+      display: none;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  &__field {
+    @extend %fieldset-reset;
+
+    display: grid;
+    gap: 30px;
+
+    &-title {
+      display: inline-block;
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+
+    &[data-grid="1"] {
+      grid-template-columns: repeat(3, 1fr);
+
+      @include container-down('lw-calc', $tablet-lg-width) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include container-down('lw-calc', $mobile-width) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &[data-grid="2"] {
+      grid-template-columns: repeat(4, 1fr);
+
+      @include container-down('lw-calc', $tablet-lg-width) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include container-down('lw-calc', $mobile-width) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &[data-grid="3"] {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    &[data-grid="4"],
+    &[data-grid="6"] {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      height: fit-content;
+    }
+
+    &[data-grid="5"] {
+      
+    }
+  }
+
+  &-bottom-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+
+    .lw-calc__field {
+      column-gap: 4px;
+      row-gap: 30px;
+
+      &-wrapper:nth-child(2) {
+        position: sticky;
+        top: 200px;
+        height: fit-content;
+  
+        .lw-calc__btn-row {
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  &__step {
+    position: relative;
+    overflow: hidden;
+    @extend %flex-align;
+
+    width: 100%;
+    height: 100%;
+    min-height: 103px;
+    border: 3px solid var(--black);
+
+    &.viewed {
+      cursor: pointer;
+    }
+
+    &:not(.viewed) {
+      opacity: .1;
+    }
+
+    &-underlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--black);
+      z-index: -1;
+      transform: translateX(-160px);
+    }
+
+    &-num {
+      @extend %flex-center;
+      flex-direction: column;
+
+      width: 60px;
+      min-width: 60px;
+      
+      padding: 10px;
+      color: var(--white);
+
+      span {
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 700;
+        margin-left: -7px;
+      }
+
+      small {
+        font-size: 12px;
+        line-height: 1;
+        font-weight: 700;
+      }
+    }
+
+    &-value {
+      position: relative;
+      @extend %flex-column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 4px;
+
+      width: 160px;
+
+      padding: 10px;
+
+      font-weight: 700;
+      font-size: 16px;
+      overflow: hidden;
+
+      span {
+        position: relative;
+        display: block;
+        margin-top: 3px;
+
+        @include text-truncate(2);
+
+        color: var(--black);
+
+        z-index: 11;
+      }
+
+      small {
+        @include text-truncate(2);
+
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--white);
+
+        height: 0;
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.lw-steps-wrapper {
+  position: sticky;
+  top: 0;
+  background-color: var(--site-bg-color);
+  padding: 30px 0;
+  z-index: 3;
+}
+.lw-steps {
+
+  & .swiper-slide {
+    width: 226px;
+  }
+}
+
+.swiper.lw-steps-content {
+  padding: 20px 0;
+}
+
+
+// .lw-steps-content-wrapper {
+//   outline: 1px solid black;
+// }
+
+/* purgecss end ignore */

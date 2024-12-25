@@ -1,0 +1,199 @@
+/* purgecss start ignore */
+
+@forward "@styles/_extends/flexbox";
+@forward "@styles/_extends/resets";
+@use "@styles/_mixins/text-truncate" as *;
+
+:root {
+  --step-slide-transition: .4s ease-in;
+}
+
+.lw-calc * {
+  box-sizing: border-box
+  // outline: 1px solid red;
+  
+}
+
+.lw-calc {
+  @extend %flex-column;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(20px, 3vw, 40px) 0;
+
+  &__header {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__steps-wrapper {
+    width: fit-content;
+    @extend %flex-align;
+    justify-content: space-between;
+    gap: clamp(3px, 2.4vw, 28px);
+  }
+
+  &__step {
+    position: relative;
+    overflow: hidden;
+
+    @extend %flex-align;
+
+    width: 100%;
+    height: 100%;
+    min-height: 103px;
+    border: 3px solid var(--black);
+
+    &.completed {
+      cursor: pointer;
+    }
+
+    &:not(.active){
+      opacity: .1;
+    }
+
+    &-underlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--black);
+      z-index: -1;
+      transform: translateX(-160px);
+    }
+
+    &-num {
+      @extend %flex-center;
+      flex-direction: column;
+
+      width: 60px;
+      min-width: 60px;
+      
+      padding: 10px;
+      color: var(--white);
+
+      span {
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 700;
+        margin-left: -7px;
+      }
+
+      small {
+        font-size: 12px;
+        line-height: 1;
+        font-weight: 700;
+      }
+    }
+
+    &-value {
+      position: relative;
+      @extend %flex-column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 4px;
+
+      width: 160px;
+
+      padding: 10px;
+
+      font-weight: 700;
+      font-size: 16px;
+      overflow: hidden;
+
+      span {
+        position: relative;
+        display: block;
+        margin-top: 3px;
+
+        @include text-truncate(2);
+
+        color: var(--black);
+
+        z-index: 11;
+      }
+
+      small {
+        @include text-truncate(2);
+
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--white);
+
+        height: 0;
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    // visually-hidden
+    // &:not(.completed) {
+    //   .lw-calc__step-value small {
+    //     position: absolute;
+    //     width: 1px;
+    //     height: 1px;
+    //     margin: -1px;
+    //     border: 0;
+    //     padding: 0;
+    //     white-space: nowrap;
+    //     clip-path: inset(100%);
+    //     clip: rect(0 0 0 0);
+    //     overflow: hidden;
+    //   }
+    // }   
+  }
+
+  &__footer {
+    @extend %flex-align;
+    gap: clamp(10px, 3vw, 20px);
+    justify-content: flex-end;
+  }
+  
+  &__btn {
+    @extend %btn-reset;
+    @extend %flex-center;
+
+    font-size: 17px;
+    font-weight: 400;
+    padding: 12px 20px 10px;
+    
+    width: 100%;
+    max-width: 220px;
+    min-height: 60px;
+    border-radius: 1px;
+    border: 1px solid transparent;
+    color: var(--white);
+    background-color: var(--primary);
+
+    &--outlined {
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      background-color: transparent;
+    }
+    
+    &:disabled {
+      cursor: initial;
+      background-color: var(--muted);
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  // &__field {
+  //   display: none;
+
+  //   &.active {
+  //     display: flex;
+  //   }
+  // }
+
+  // &__btn {
+  //   &.disabled {
+  //     visibility: hidden;
+  //   }
+  // }
+}
+
+
+/* purgecss end ignore */

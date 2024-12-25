@@ -1,0 +1,10 @@
+mixin main-radio(data)
+  .main-radio
+    label(for= data.id)
+      .main-radio__header
+        img(src=`./assets/img/${data.img}.png` alt!= data.name width="480" height="480")
+      
+      .main-radio__footer
+        span.main-radio__title!= data.name
+        span.main-radio__price!= data.price
+    input(type="radio" id= data.id name!= data.ctrlName  value!= data.name checked= data.checked ? 'checked' : null)

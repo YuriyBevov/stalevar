@@ -1,0 +1,61 @@
+%hover-opacity{
+  transition: opacity .3s ease-in-out;
+  opacity: 1;
+
+  @media(hover: hover) {
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  &:focus {
+    opacity: .6;
+  }
+
+  &:active {
+    opacity: .4;
+  }
+}
+
+%primary-color-hover {
+  transition: color .3s ease-in-out;
+
+  @media(hover: hover) {
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  &:focus {
+    color: var(--primary);
+  }
+
+  &:active {
+    color: var(--primary);
+    opacity: .4;
+  }
+}
+
+%main-btn-outlined-hover {
+  transition: background-color var(--main-transition), color var(--main-transition), opacity var(--main-transition);
+
+  @media(hover: hover) {
+    &:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+  }
+
+  &:focus {
+    opacity: .6;
+  }
+
+  &:active {
+    opacity: .4;
+  }
+}
+
+%text-shadow {
+  text-shadow: 0px -3px 4px #FFFFFF, 0px 0px 10px #FFFFFF, 5px 3px 2px #FFFFFF, 2px 2px 10px #FFFFFF;
+}
+

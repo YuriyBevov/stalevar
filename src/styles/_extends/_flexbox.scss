@@ -1,0 +1,21 @@
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-align {
+  display: flex;
+  align-items: center;
+}
+
+%flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2.4vw, 24px);
+}

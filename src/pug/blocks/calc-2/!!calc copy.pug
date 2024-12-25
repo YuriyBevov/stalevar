@@ -1,0 +1,76 @@
+section
+  .container
+    form(action="#").lw-calc
+      .lw-calc__header
+        .lw-calc__steps-wrapper
+          .lw-calc__step.active
+            .lw-calc__step-underlay(aria-hidden="true")
+            .lw-calc__step-num 
+              span 1
+              small Шаг
+            .lw-calc__step-value 
+              span Модель <br>двери
+              small Solo 1
+
+          .lw-calc__step
+            .lw-calc__step-underlay(aria-hidden="true")
+            .lw-calc__step-num 
+              span 2 
+              small Шаг 
+            .lw-calc__step-value 
+              span Покрытие <br>двери
+              small Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis dolorem similique et. Repellat nam nemo libero! Numquam provident fugit aliquid commodi adipisci fugiat quam laudantium, ipsum natus vitae optio atque.
+
+          .lw-calc__step
+            .lw-calc__step-underlay(aria-hidden="true")
+            .lw-calc__step-num 
+              span 3 
+              small Шаг
+            .lw-calc__step-value 
+              span Наружняя сторона
+              small Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum eligendi facilis iusto enim, eum cum cupiditate unde exercitationem dolore asperiores officia eius autem amet atque accusamus sunt dolorem commodi sit.
+          .lw-calc__step
+            .lw-calc__step-underlay(aria-hidden="true")
+            .lw-calc__step-num 
+              span 4 
+              small Шаг
+            .lw-calc__step-value 
+              span Внутренняя сторона
+              small Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum eligendi facilis iusto enim, eum cum cupiditate unde exercitationem dolore asperiores officia eius autem amet atque accusamus sunt dolorem commodi sit.
+          .lw-calc__step
+            .lw-calc__step-underlay(aria-hidden="true")
+            .lw-calc__step-num 
+              span 5 
+              small Шаг
+            .lw-calc__step-value 
+              span Дополнительно
+              small Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum eligendi facilis iusto enim, eum cum cupiditate unde exercitationem dolore asperiores officia eius autem amet atque accusamus sunt dolorem commodi sit.
+          .lw-calc__step
+            .lw-calc__step-underlay(aria-hidden="true")
+            .lw-calc__step-num 
+              span 6
+              small Шаг
+            .lw-calc__step-value 
+              span Итого
+
+      .lw-calc__content
+        fieldset(data-step="1").active
+          input(type="radio" name="door_type" value="Solo-1" checked)
+          input(type="radio" name="door_type" value="Solo-2")
+          input(type="radio" name="door_type" value="Solo-3")
+        fieldset(data-step="2")
+          span 2 step
+        fieldset(data-step="3")
+          span 3 step
+        fieldset(data-step="4")
+          span 4 step
+        fieldset(data-step="5")
+          span 5 step
+        fieldset(data-step="6")
+          span 6 step
+
+      .lw-calc__footer
+        button(type="button").lw-calc__btn.lw-calc__btn--prev.lw-calc__btn--outlined.hidden Назад
+        button(type="button").lw-calc__btn.lw-calc__btn--next Вперед
+        button(type="submit").lw-calc__btn.lw-calc__btn--submit.hidden Отправить заявку
+        

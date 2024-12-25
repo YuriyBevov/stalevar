@@ -1,0 +1,141 @@
+include ../../components/_ui/controls/main-radio/main-radio
+include ../../components/_ui/controls/main-radio-sm/main-radio-sm
+
+include ../../../content/step1
+include ../../../content/step2
+include ../../../content/step3 
+section
+  .container
+    form(action="#").lw-calc
+
+      <div thumbsSlider="" class="swiper lw-steps">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            .lw-calc__step(data-id="1").viewed
+              .lw-calc__step-underlay(aria-hidden="true")
+              .lw-calc__step-num 
+                span 1
+                small Шаг
+              .lw-calc__step-value 
+                span Модель <br>двери
+                small Solo 1
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__step(data-id="2")
+              .lw-calc__step-underlay(aria-hidden="true")
+              .lw-calc__step-num 
+                span 2 
+                small Шаг 
+              .lw-calc__step-value 
+                span Покрытие <br>двери
+                small Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis dolorem similique et. Repellat nam nemo libero! Numquam provident fugit aliquid commodi adipisci fugiat quam laudantium
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__step(data-id="3")
+              .lw-calc__step-underlay(aria-hidden="true")
+              .lw-calc__step-num
+                span 3 
+                small Шаг
+              .lw-calc__step-value 
+                span Наружняя сторона
+                small Lorem ipsum dolor sit amet
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__step(data-id="4")
+              .lw-calc__step-underlay(aria-hidden="true")
+              .lw-calc__step-num 
+                span 4 
+                small Шаг
+              .lw-calc__step-value 
+                span Внутренняя сторона
+                small Solo 1
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__step(data-id="5")
+              .lw-calc__step-underlay(aria-hidden="true")
+              .lw-calc__step-num 
+                span 5 
+                small Шаг
+              .lw-calc__step-value 
+                span Дополнительно
+                small Solo 1
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__step(data-id="6")
+              .lw-calc__step-underlay(aria-hidden="true")
+              .lw-calc__step-num 
+                span 6
+                small Шаг
+              .lw-calc__step-value 
+                span Итого
+          </div>          
+        </div>
+      </div>
+
+      <div class="swiper lw-steps-content">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            .lw-calc__field-container
+              .lw-calc__field-wrapper
+                fieldset.lw-calc__field(data-grid="1")
+                  each item in step1_content
+                    +main-radio(item)
+              .lw-calc__btn-row
+                <button type="button" class="lw-calc__btn lw-calc__btn--next">Далее</button>
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__field-container
+              .lw-calc__field-wrapper
+                fieldset.lw-calc__field(data-grid="2")
+                  each item in step2_content
+                    +main-radio(item)
+
+                .lw-calc__btn-row
+                  <button type="button" class="lw-calc__btn lw-calc__btn--outlined lw-calc__btn--prev">Назад</button>
+                  <button type="button" class="lw-calc__btn lw-calc__btn--next">Далее</button>
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__field-container
+              .lw-calc__field-wrapper
+                fieldset.lw-calc__field(data-grid="3")
+                  each item in step3_content
+                    +main-radio(item)
+                  
+              .lw-calc-bottom-section
+                .lw-calc__field-wrapper
+                  span.lw-calc__field-title ПВХ покрытие наружное
+                  fieldset.lw-calc__field(data-grid="4")
+                    each item in step3_bottom_section_left_content
+                      +main-radio-sm(item)
+                
+                .lw-calc__field-wrapper
+                  span.lw-calc__field-title Фурнитура
+                  fieldset.lw-calc__field(data-grid="5")
+                  
+                    //- each item in step3_bottom_section_middle_content
+                    //-   +main-radio-sm(item)
+
+                    .lw-calc__btn-row
+                      <button type="button" class="lw-calc__btn lw-calc__btn--outlined lw-calc__btn--prev">Назад</button>
+                      <button type="button" class="lw-calc__btn lw-calc__btn--next">Далее</button>
+                
+                .lw-calc__field-wrapper
+                  span.lw-calc__field-title Оформление наружнее
+                  fieldset.lw-calc__field(data-grid="6")
+                    each item in step3_bottom_section_right_content
+                      +main-radio-sm(item)
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__field
+              span 4 step
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__field
+              span 5 step
+          </div>
+          <div class="swiper-slide">
+            .lw-calc__field
+              span 6 step
+          </div>
+        </div>
+      </div>
