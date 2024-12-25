@@ -157,7 +157,6 @@ const checkValidityBeforeStepChanging = (field) => {
 btnNext.forEach(btn => {
   btn.addEventListener('click', () => {
     checkValidityBeforeStepChanging(contentNodes[currentStepIndex]);
-    // tlForwardCardAnimation(currentStepIndex);
   });
 });
 
@@ -175,6 +174,9 @@ function createArrayForReversedAnimation(elems, pos) {
 
 const onControlChangeHandler = (ctrl) => {
   const index = Array.from(contentNodes).indexOf(ctrl.closest('.lw-steps-content'));
+
+  const btns = contentNodes[index].querySelectorAll('.lw-calc__btn');
+  btnsDisabling(btns, true);
 
   for(let i = index + 1; i < contentNodes.length; i++) {
     const fields = contentNodes[i].querySelectorAll('fieldset');
@@ -199,18 +201,18 @@ const onControlChangeHandler = (ctrl) => {
   const tl = gsap.timeline();
 
   tl
-    .to(cards, {stagger: .2, className: 'lw-calc__step', autoAlpha: 0.1, duration: .4})
+    .to(cards, {stagger: .1, className: 'lw-calc__step', autoAlpha: 0.1, duration: .4})
     .to(underlay, {stagger: .1, x: '-160px', duration: .4 }, "-=.3")
-    .to(title, {stagger: .2, color: '#000000', duration: .4 }, "-=.9")
+    .to(title, {stagger: .1, color: '#000000', duration: .4 }, "-=.9")
     .to(text, {
       duration: .4,
       opacity: 0,
       height: 0,
       autoAlpha: 0,
       onComplete: () => {
-        tl.kill();
+        btnsDisabling(btns);
       }
-    }, "-=.6");
+    }, "-=.8");
 
     currentStepIndex = index;
 };
