@@ -6,5 +6,12 @@ mixin main-radio(data)
       
       .main-radio__footer
         span.main-radio__title!= data.name
-        span.main-radio__price!= data.price
-    input(type="radio" id= data.id name!= data.ctrlName  value!= data.name checked= data.checked ? 'checked' : null)
+        span.main-radio__price!= data.price 
+    input(
+      type="radio" 
+      id= data.id 
+      name!= data.ctrlName  
+      value!= data.name checked= data.checked ? 'checked' : null 
+      data-collection-id!= data.collectionId ? data.collectionId : null 
+      data-disable-collections= data.disableCollection ? 'true' : null
+    )

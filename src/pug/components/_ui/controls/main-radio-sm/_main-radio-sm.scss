@@ -20,6 +20,12 @@
     transition: border-color 0.2s linear;
     background-color: var(--white);
     max-height: 490px;
+    padding: 7px;
+
+    &--transparent {
+      border-color: transparent;
+      background-color: transparent;
+    }
 
     img {
       width: 100%;
@@ -36,13 +42,13 @@
       opacity: 0;
       transition: transform 0.2s linear, opacity 0.2s linear, background-color 0.2s linear;
   
-      width: 44px;
-      height: 44px;
+      width: 22px;
+      height: 22px;
       content: '';
       
       border-radius: 2px;
       background-color: transparent;
-      background-size: 24px;
+      background-size: 12px;
       background-repeat: no-repeat;
       background-position: center;
     }

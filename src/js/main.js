@@ -4,4 +4,4 @@
 // import "./modules/fancy";
 // import "./modules/table-wrapper";
 
-import "@pug/blocks/calc/calc";
+import "@pug/blocks/calc/js/calc";

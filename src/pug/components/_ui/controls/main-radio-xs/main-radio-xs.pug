@@ -1,0 +1,16 @@
+mixin main-radio-xs(data)
+  .main-radio-xs
+    label(for= data.id)
+      .main-radio-xs__pattern
+        img(src=`./assets/img/${data.img}.png` alt!= data.name width="480" height="480")
+      .main-radio-xs__content
+        span.main-radio-xs__title!= data.title
+        span.main-radio-xs__price!= data.price
+    input(
+      type="radio" 
+      id= data.id 
+      name!= data.ctrlName
+      value!= data.name 
+      checked= data.checked ? 'checked' : null
+      data-hardware-chooser-texture= data.hardwareTextureSrc ? data.hardwareTextureSrc : null
+    )

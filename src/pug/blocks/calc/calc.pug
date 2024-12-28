@@ -1,9 +1,11 @@
 include ../../components/_ui/controls/main-radio/main-radio
 include ../../components/_ui/controls/main-radio-sm/main-radio-sm
+include ../../components/_ui/controls/main-radio-xs/main-radio-xs
 
 include ../../../content/step1 
 include ../../../content/step2
 include ../../../content/step3
+include ../../../content/step4
 
 section
   .container
@@ -111,9 +113,14 @@ section
               .lw-calc__field-wrapper
                 span.lw-calc__field-title Фурнитура
                 fieldset.lw-calc__field(data-grid="5")
-                
-                  //- each item in step3_bottom_section_middle_content
-                  //-   +main-radio-sm(item)
+                  .lw-calc__field-section
+                    each item in step3_bottom_section_middle_content
+                      +main-radio-xs(item)
+                  .lw-calc__field-section
+                    .lw-complete-view(data-view="1") 
+                      img(class="lw-complete-view__cover" src="./assets/img/step3_1-3.png" alt="Наружная сторона" width="260" height="480")
+                      img(class="lw-complete-view__texture" src="./assets/img/textures/classic/1.png" alt="Наружная сторона" width="260" height="480")
+                      img(class="lw-complete-view__hardware" src="./assets/img/gold-hardware.png" alt="Наружная сторона" width="260" height="480")
 
                   .lw-calc__btn-row
                     <button type="button" class="lw-calc__btn lw-calc__btn--outlined lw-calc__btn--prev">Назад</button>
@@ -123,12 +130,43 @@ section
                 span.lw-calc__field-title Оформление наружнее
                 fieldset.lw-calc__field(data-grid="6")
                   each item in step3_bottom_section_right_content
-                    +main-radio-sm(item)        
+                    +main-radio-sm(item)               
         .lw-steps-content(data-content="4")
-          h2 step-4-content
-          .lw-calc__btn-row
-            <button type="button" class="lw-calc__btn lw-calc__btn--outlined lw-calc__btn--prev">Назад</button>
-            <button type="button" class="lw-calc__btn lw-calc__btn--next">Далее</button>          
+          .lw-calc__field-container
+            .lw-calc__field-wrapper
+              fieldset.lw-calc__field(data-grid="3")
+                each item in step4_content
+                  +main-radio(item)
+                
+            .lw-calc-bottom-section
+              .lw-calc__field-wrapper
+                span.lw-calc__field-title ПВХ покрытие внутреннее
+                fieldset.lw-calc__field(data-grid="4")
+                  each item in step4_bottom_section_left_content
+                    +main-radio-sm(item)
+              
+              .lw-calc__field-wrapper
+                span.lw-calc__field-title Фурнитура
+                fieldset.lw-calc__field(data-grid="5")
+                  .lw-calc__field-section
+                    each item in step4_bottom_section_middle_content
+                      +main-radio-xs(item)
+                  .lw-calc__field-section
+                    .lw-complete-view 
+                      img(class="lw-complete-view__cover" src="./assets/img/step3_1-3.png" alt="Наружная сторона" width="260" height="480")
+                      img(class="lw-complete-view__texture" src="./assets/img/textures/classic/1.png" alt="Наружная сторона" width="260" height="480")
+                      img(class="lw-complete-view__hardware" src="./assets/img/gold-hardware.png" alt="Наружная сторона" width="260" height="480")
+
+                  .lw-calc__btn-row
+                    <button type="button" class="lw-calc__btn lw-calc__btn--outlined lw-calc__btn--prev">Назад</button>
+                    <button type="button" class="lw-calc__btn lw-calc__btn--next">Далее</button>
+              
+              .lw-calc__field-wrapper
+                span.lw-calc__field-title Оформление внутреннее
+                
+                fieldset.lw-calc__field(data-grid="6")
+                  each item in step4_bottom_section_right_content
+                    +main-radio-sm(item)
         .lw-steps-content(data-content="5")
           h2 step-5-content
           .lw-calc__btn-row

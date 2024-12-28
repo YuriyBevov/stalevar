@@ -1,9 +1,18 @@
 mixin main-radio-sm(data)
-  .main-radio-sm
+  .main-radio-sm(
+    data-texture-collection-id= data.collectionId ? data.collectionId : null
+    data-cover-texture= data.dataCoverTexture ? 'true' : null
+  )
     label(for= data.id)
-      .main-radio-sm__header
+      .main-radio-sm__header(class= data.transparent ? 'main-radio-sm__header--transparent' : null)
         img(src=`./assets/img/${data.img}.png` alt!= data.name width="100" height="200")
       
       .main-radio-sm__footer
         span.main-radio-sm__title!= data.name
-    input(type="radio" id= data.id name!= data.ctrlName  value!= data.name checked= data.checked ? 'checked' : null)
+    input(
+      type="radio"
+      id= data.id
+      name!= data.ctrlName
+      value!= data.name
+      checked= data.checked ? 'checked' : null
+    )

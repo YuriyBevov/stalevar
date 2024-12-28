@@ -5,6 +5,9 @@ import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 
+import { btnsDisabling } from './utils/btnsDisabling';
+import { createArrayForReversedAnimation } from "./utils/createArrayForReversedAnimation";
+
 let currentStepIndex = 0; 
 
 const contentNodes = document.querySelectorAll('.lw-steps-content');
@@ -53,18 +56,6 @@ const jumpToStep = (index) => {
     }
   }
 };
-
-function btnsDisabling(btns, state) {
-  if(state) {
-    btns.forEach(btn => {
-      btn.setAttribute('disabled', true);
-    });
-  } else {
-    btns.forEach(btn => {
-      btn.removeAttribute('disabled');
-    });
-  }
-}
 
 const tlForwardCardAnimation = (index) => {
   stepSlider.slideTo(index + 1); // листаю слайдер вперед
@@ -166,13 +157,23 @@ btnPrev.forEach(btn => {
   });
 });
 
+const refreshTextureCollection = (field) => {
+  const ctrls = field.querySelectorAll('[data-texture-collection-id]');
+
+  ctrls.forEach(ctrl => {
+    if(ctrl.dataset.textureCollectionId === '1') {
+      ctrl.style.display = 'flex';
+    }
+  });
+  
+  if(ctrls[0]) {
+    onChangeSetTextureHandler(ctrls[0]);
+  }
+}
+
 const controls = document.querySelectorAll('input:not(input[type="submit"])');
 
-function createArrayForReversedAnimation(elems, pos) {
-  return Array.from(elems).splice(pos).reverse();
-} 
-
-const onControlChangeHandler = (ctrl) => {
+const onControlChangeRefreshStateHandler = (ctrl) => {
   const index = Array.from(contentNodes).indexOf(ctrl.closest('.lw-steps-content'));
 
   const btns = contentNodes[index].querySelectorAll('.lw-calc__btn');
@@ -189,10 +190,30 @@ const onControlChangeHandler = (ctrl) => {
           ctrl.checked = false;
         });
         ctrls[0].checked = true;
+
+        const textureCtrls = field.querySelectorAll('[data-texture-collection-id]');
+        if(textureCtrls) {
+          refreshTextureCollection(field);
+        }
+
+        const coverCtrl = field.querySelector('[data-cover-texture]');
+        if(coverCtrl) {
+          onChangeSetCoverHandler(coverCtrl);
+        }
+
+        const hardwareCtrl = field.querySelector('[data-hardware-chooser-texture]');
+        if(hardwareCtrl) {
+          onChangeSetHardwareHandler(hardwareCtrl);
+        }
+      }
+
+      const textureCollectionDisabler = field.querySelector('[data-disable-collections]');
+      if(textureCollectionDisabler) {
+        disableTextureCollections(textureCollectionDisabler, false);
       }
     });
   }
-
+ 
   const cards    = createArrayForReversedAnimation(steps, index + 1);
   const text     = createArrayForReversedAnimation(document.querySelectorAll(".lw-calc__step-value small"), index + 1);
   const title    = createArrayForReversedAnimation(document.querySelectorAll(".lw-calc__step-value span"), index + 1);
@@ -219,6 +240,114 @@ const onControlChangeHandler = (ctrl) => {
 
 controls.forEach(ctrl => {
   ctrl.addEventListener('change', () => {
-    onControlChangeHandler(ctrl);
+    onControlChangeRefreshStateHandler(ctrl);
   });
 });
+
+// выбор текстуры
+const onChangeSetTextureHandler = (target) => {
+  const texture = target.querySelector('img').getAttribute('src');
+  const contentBlock = target.closest('.lw-steps-content');
+  const textureView = contentBlock.querySelector('.lw-complete-view__texture');
+  textureView.setAttribute('src', texture);
+}
+
+const textureCtrls = document.querySelectorAll('[data-texture-collection-id]');
+if(textureCtrls) {
+  textureCtrls.forEach(ctrl => {
+    if(ctrl.dataset.textureCollectionId === '1') {
+      ctrl.style.display = 'flex';
+    } else {
+      ctrl.style.display = 'none';
+    }
+
+    ctrl.addEventListener('change', () => {
+      onChangeSetTextureHandler(ctrl.closest('[data-texture-collection-id]'));
+    });
+  });
+}
+
+// выбор фурнитуры
+const onChangeSetHardwareHandler = (target) => {
+  const texture = target.dataset.hardwareChooserTexture;
+  const hardwareView = target.closest('.lw-steps-content').querySelector('.lw-complete-view__hardware');
+  hardwareView.setAttribute('src', texture);
+}
+
+const hardwareCtrls = document.querySelectorAll('[data-hardware-chooser-texture]');
+if(hardwareCtrls) {
+  hardwareCtrls.forEach(ctrl => {
+    ctrl.addEventListener('change', () => {
+      onChangeSetHardwareHandler(ctrl);
+    });
+  });
+}
+
+// выбор покрытия
+const onChangeSetCoverHandler = (target) => {
+  const texture = target.querySelector('img').getAttribute('src');
+  const contentBlock = target.closest('.lw-steps-content');
+  const textureView = contentBlock.querySelector('.lw-complete-view__cover');
+  textureView.setAttribute('src', texture);
+}
+
+const coverCtrls = document.querySelectorAll('[data-cover-texture]');
+if(coverCtrls) {
+  coverCtrls.forEach(ctrl => {
+    ctrl.addEventListener('change', () => {
+      onChangeSetCoverHandler(ctrl.closest('[data-cover-texture]'));
+    });
+  });
+}
+
+const collectionSwitchers = document.querySelectorAll('[data-collection-id]');
+if(collectionSwitchers) {
+  collectionSwitchers.forEach(switcher => {
+    switcher.addEventListener('change', () => {
+      
+      const collectionId = switcher.dataset.collectionId;
+      const textureCtrls = switcher.closest('.lw-steps-content').querySelectorAll('[data-texture-collection-id]');
+      const arr = [];
+
+      textureCtrls.forEach(ctrl => {
+        if(ctrl.dataset.textureCollectionId === collectionId) {
+          ctrl.style.display = 'flex';
+          arr.push(ctrl);
+        } else {
+          ctrl.style.display = 'none';
+        }
+      });
+
+      arr[0].querySelector('input[type="radio"]').checked = true;
+      onChangeSetTextureHandler(arr[0].closest('[data-texture-collection-id]'));
+      disableTextureCollections(switcher, false);
+    });
+  });
+}
+
+const disableTextureCollections = (disabler, state) => {
+  const textureCtrls = disabler.closest('.lw-steps-content').querySelectorAll('[data-texture-collection-id]');
+  const textureView = disabler.closest('.lw-steps-content').querySelector('.lw-complete-view__texture');
+
+  textureCtrls.forEach(ctrl => {
+    if(!!state) {
+      ctrl.setAttribute('disabled', true);
+      ctrl.style.opacity = '0.1';
+      textureView.style.display = 'none';
+    } else {
+      ctrl.removeAttribute('disabled');
+      ctrl.style.opacity = '1';
+      textureView.style.display = 'flex';
+    }
+  });
+}
+
+const textureCollectionDisablers = document.querySelectorAll('[data-disable-collections]');
+
+if(textureCollectionDisablers) {
+  textureCollectionDisablers.forEach(disabler => {
+    disabler.addEventListener('change', () => {
+      disableTextureCollections(disabler, true);
+    });
+  });
+}
