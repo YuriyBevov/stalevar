@@ -64,7 +64,7 @@
     &__footer {
       position: relative;
       @extend %flex-column;
-      padding: 0px 20px;
+      padding: 0px clamp(0px, 1.6vw, 20px);
       padding-right: 50px;
       gap: 8px;
       overflow: hidden;
@@ -77,8 +77,8 @@
         opacity: 0;
         transition: transform 0.2s linear, opacity 0.2s linear, background-color 0.2s linear;
     
-        width: 44px;
-        height: 44px;
+        width: clamp(32px, 6vw, 44px);
+        height: clamp(32px, 6vw, 44px);
         content: '';
         
         border-radius: 2px;
@@ -90,12 +90,12 @@
     }
 
     &__title {
-      font-size: 17px;
+      font-size: clamp(12px, 2.4vw, 17px);
       font-weight: 400;
     }
 
     &__price {
-      font-size: 20px;
+      font-size: clamp(14px, 2.4vw, 20px);
       font-weight: 700;
     }
   }

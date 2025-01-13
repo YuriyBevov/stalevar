@@ -1,5 +1,5 @@
 /* purgecss start ignore */
-
+@use "./modal";
 @forward "@styles/_extends/flexbox";
 @forward "@styles/_extends/resets";
 @use "@styles/_mixins/text-truncate" as *;
@@ -15,7 +15,6 @@ html:has(.lw-calc) {
   @extend %flex-column;
   gap: 20px;
   padding-bottom: 50px;
-
   container: lw-calc / inline-size;
 
   .swiper {
@@ -29,7 +28,6 @@ html:has(.lw-calc) {
     font-size: clamp(15px, 2.4vw,17px);
     font-weight: 400;
     padding: 12px 20px 10px;
-    
     width: 100%;
     max-width: 260px;
     min-height: clamp(44px, 7vw, 60px);
@@ -39,11 +37,23 @@ html:has(.lw-calc) {
     background-color: var(--primary);
     transition: background-color 0.3s linear;
 
+    @include container-down('lw-calc', 420px) {
+      max-width: 100%;
+    }
+
     &-row {
       @extend %flex-align;
       gap: 16px;
       justify-content: flex-end;
       margin-top: clamp(30px, 4vw, 80px);
+
+      @include container-down('lw-calc', 580px) {
+        justify-content: flex-start;
+      }
+
+      @include container-down('lw-calc', 420px) {
+        flex-direction: column;
+      }
     }
 
     &:disabled {
@@ -73,13 +83,8 @@ html:has(.lw-calc) {
 
   &__field {
     @extend %fieldset-reset;
-
     display: grid;
     gap: clamp(16px, 2.4vw, 30px);
-
-    &-wrapper {
-      // order: 2;
-    }
 
     &-title {
       display: inline-block;
@@ -88,6 +93,10 @@ html:has(.lw-calc) {
       margin-bottom: 16px;
       min-height: 54px;
       @include text-truncate(2);
+
+      @include container-down('lw-calc', 580px) {
+        min-height: initial;
+      }
     }
 
     &[data-grid="1"] {
@@ -166,51 +175,31 @@ html:has(.lw-calc) {
 
       .lw-calc__field-wrapper {
         margin: 0 auto;
+        width: 100%;
 
         &:nth-child(2) {
           order: 3;
         }
       }
-
     }
 
     .lw-calc__field {
-      &-wrapper:has(.lw-calc__modal-field) {
-        .lw-calc-modal-opener {
-          display: none;
-          width: 100%;
-          max-width: 100%;
-          border: none;
-          background-color: var(--primary);
-        }
-
-        @include container-down('lw-calc', 580px) {
-          // order: 1;
-          width: 100%;
-          .lw-calc__modal-field {
-            display: none;
-          }
-
-          .lw-calc-modal-opener {
-            display: flex;
-          }
-        }
-      }
-
       &-wrapper:nth-child(2) {
         position: sticky;
         top: 130px;
         height: fit-content;
-        max-width: 420px;
-        // order: 2;
+
+        .lw-calc__btn-row {
+          justify-content: center;
+        }
 
         @include container-down('lw-calc', 580px) {
           position: static;
           top: 0;
-        }
-  
-        .lw-calc__btn-row {
-          justify-content: center;
+
+          .lw-calc__btn-row {
+            justify-content: start;
+          }
         }
       }
 
@@ -253,10 +242,8 @@ html:has(.lw-calc) {
     &-num {
       @extend %flex-center;
       flex-direction: column;
-
       width: 60px;
       min-width: 60px;
-      
       padding: 10px;
       color: var(--white);
 
@@ -280,11 +267,8 @@ html:has(.lw-calc) {
       justify-content: center;
       align-items: flex-start;
       gap: 4px;
-
       width: 160px;
-
       padding: 10px;
-
       font-weight: 700;
       font-size: clamp(12px, 2.4vw, 16px);
       overflow: hidden;
@@ -293,21 +277,16 @@ html:has(.lw-calc) {
         position: relative;
         display: block;
         margin-top: 3px;
-
         @include text-truncate(2);
-
         color: var(--black);
-
         z-index: 11;
       }
 
       small {
         @include text-truncate(2);
-
         font-size: 12px;
         font-weight: 400;
         color: var(--white);
-
         height: 0;
         visibility: hidden;
         opacity: 0;
@@ -381,7 +360,6 @@ html:has(.lw-calc) {
         border-bottom: 1px solid var(--muted);
 
         &:not(:first-child) {
-
           text-align: right;
           justify-content: flex-end;
         }
@@ -390,7 +368,6 @@ html:has(.lw-calc) {
           font-weight: 700;
         }
       }
-      
     }
   }
 }
@@ -440,6 +417,11 @@ html:has(.lw-calc) {
     width: 100%;
     height: auto;
     object-fit: contain;
+
+    @include container-down('lw-calc', 580px) {
+      max-height: 320px;
+      object-position: left;
+    }
   }
   
   &__cover {

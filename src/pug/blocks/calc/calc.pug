@@ -11,7 +11,7 @@ include ../../../content/step5
 
 section
   .container
-    form(action="#").lw-calc
+    .lw-calc
       <div class="lw-steps-wrapper">
         <div class="swiper lw-steps">
           <div class="swiper-wrapper">
@@ -106,12 +106,10 @@ section
                 
             .lw-calc-bottom-section
               .lw-calc__field-wrapper
-                button(type="button").lw-calc__btn.lw-calc-modal-opener Выбрать ПВХ
-                .lw-calc__modal-field
-                  span.lw-calc__field-title ПВХ покрытие наружное
-                  fieldset.lw-calc__field(data-grid="4")
-                    each item in step3_bottom_section_left_content
-                      +main-radio-sm(item)
+                span.lw-calc__field-title ПВХ покрытие наружное
+                fieldset.lw-calc__field(data-grid="4")
+                  each item in step3_bottom_section_left_content
+                    +main-radio-sm(item)
               
               .lw-calc__field-wrapper
                 span.lw-calc__field-title Фурнитура
@@ -130,12 +128,10 @@ section
                     <button type="button" class="lw-calc__btn lw-calc__btn--next">Далее</button>
               
               .lw-calc__field-wrapper
-                button(type="button").lw-calc__btn.lw-calc-modal-opener Выбрать оформление
-                .lw-calc__modal-field
-                  span.lw-calc__field-title Оформление наружнее
-                  fieldset.lw-calc__field(data-grid="6")
-                    each item in step3_bottom_section_right_content
-                      +main-radio-sm(item)               
+                span.lw-calc__field-title Оформление наружнее
+                fieldset.lw-calc__field(data-grid="6")
+                  each item in step3_bottom_section_right_content
+                    +main-radio-sm(item)               
         .lw-steps-content(data-content="4")
           .lw-calc__field-container
             .lw-calc__field-wrapper
@@ -145,12 +141,10 @@ section
                 
             .lw-calc-bottom-section
               .lw-calc__field-wrapper
-                button(type="button").lw-calc__btn.lw-calc-modal-opener Выбрать ПВХ
-                .lw-calc__modal-field
-                  span.lw-calc__field-title ПВХ покрытие внутреннее
-                  fieldset.lw-calc__field(data-grid="4")
-                    each item in step4_bottom_section_left_content
-                      +main-radio-sm(item)
+                span.lw-calc__field-title ПВХ покрытие внутреннее
+                fieldset.lw-calc__field(data-grid="4")
+                  each item in step4_bottom_section_left_content
+                    +main-radio-sm(item)
               
               .lw-calc__field-wrapper
                 span.lw-calc__field-title Фурнитура
@@ -169,12 +163,10 @@ section
                     <button type="button" class="lw-calc__btn lw-calc__btn--next">Далее</button>
               
               .lw-calc__field-wrapper
-                button(type="button").lw-calc__btn.lw-calc-modal-opener Выбрать оформление
-                .lw-calc__modal-field
-                  span.lw-calc__field-title Оформление внутреннее
-                  fieldset.lw-calc__field(data-grid="6")
-                    each item in step4_bottom_section_right_content
-                      +main-radio-sm(item)
+                span.lw-calc__field-title Оформление внутреннее
+                fieldset.lw-calc__field(data-grid="6")
+                  each item in step4_bottom_section_right_content
+                    +main-radio-sm(item)
         
         .lw-steps-content(data-content="5")
           .lw-calc__field-wrapper
@@ -201,9 +193,9 @@ section
                   img(class="lw-complete-view__texture" src="./assets/img/textures/classic/1.png" alt="Наружная сторона" width="260" height="480")
                   img(class="lw-complete-view__hardware" src="./assets/img/gold-hardware.png" alt="Наружная сторона" width="260" height="480")
                 span Внутренняя сторона
-                
+          form(action="#")      
             .lw-calc__total-table
-              .lw-calc__total-table-row(data-step-result="mod")
+              .lw-calc__total-table-row(data-field="mod")
                 .lw-calc__total-table-data Модель двери
                 .lw-calc__total-table-data solo-1
                 .lw-calc__total-table-data 23 800 ₽

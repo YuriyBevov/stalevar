@@ -357,4 +357,3 @@ if(textureCollectionDisablers) {
     });
   });
 }
-

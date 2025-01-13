@@ -1,0 +1,90 @@
+@forward "@styles/_extends/flexbox";
+@forward "@styles/_extends/resets";
+@use "@styles/_mixins/text-truncate" as *;
+@use "@styles/_mixins/container-queries" as *;
+@use "@styles/_vars/scoped" as *;
+
+@include container-down('lw-calc', 580px) {
+// .lw-modal {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   width: 100dvw;
+//   height: 100vh;
+//   height: 100dvh;
+//   background-color: rgba(0,0,0,.3);
+//   z-index: 101;
+//   visibility:hidden;
+//   opacity: 0;
+//   transition: visibility var(--main-transition), opacity var(--main-transition);
+
+//   &.active {
+//     visibility: visible;
+//     opacity: 1;
+
+//     .lw-modal-content {
+//       opacity: 1;
+//       visibility: visible;
+//       transform: translateY(0);
+//     }
+
+//     .lw-modal-closer {
+//       visibility: visible;
+//       opacity: 1;
+//       transform: translateY(0);
+//     }
+//   }
+
+//   .lw-modal-content {
+//     position: absolute;
+//     top: 50%;
+//     left: 0;
+//     transform: translate(0, -50%);
+//     @extend %flex-center;
+//     width: calc(100% - 60px);
+//     max-width: 900px;
+//     height: fit-content;
+//     max-height: 90vh;
+//   }
+
+//   // .lw-modal-content {
+//   //   width: 100%;
+//   //   height: fit-content;
+//   //   max-height: calc(90vh - var(--main-offset)* 2);
+//   //   overflow: hidden;
+//   //   overflow-y: auto;
+//   //   padding: var(--main-offset);
+//   //   background-color: var(--white);
+//   //   visibility: hidden;
+//   //   opacity: 0;
+//   //   transform: translateX(-100vw);
+//   //   transition: visibility .4s linear, opacity .4s linear, transform .4s linear;
+
+//   //   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+//   // }
+
+//   .lw-modal-closer {
+//     position: absolute;
+//     top: -20px;
+//     right: -20px;
+//     border-radius: 50%;
+//     width: 40px;
+//     height: 40px;
+//     min-height: initial;
+//     padding: 0;
+//     z-index: 3;
+//     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+//     visibility: hidden;
+//     opacity: 0;
+//     transform: translateY(50px);
+//     transition: visibility .4s linear, opacity .4s linear, transform .4s linear;
+
+//     svg {
+//       fill: var(--white);
+//       width: 24px;
+//       height: 24px;
+//     }
+//   }
+// }
+}
