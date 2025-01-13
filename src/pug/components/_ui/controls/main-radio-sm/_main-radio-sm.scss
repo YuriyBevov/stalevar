@@ -58,6 +58,10 @@
     @extend %flex-column;
     padding: 8px 2px;
     gap: 8px;
+
+    @include container-down('lw-calc', $tablet-lg-width) {
+      display: none;
+    }
   }
 
   &__title {

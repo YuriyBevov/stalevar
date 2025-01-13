@@ -14,6 +14,7 @@ html:has(.lw-calc) {
   position: relative;
   @extend %flex-column;
   gap: 20px;
+  padding-bottom: 50px;
 
   container: lw-calc / inline-size;
 
@@ -25,13 +26,13 @@ html:has(.lw-calc) {
     @extend %btn-reset;
     @extend %flex-center;
 
-    font-size: 17px;
+    font-size: clamp(15px, 2.4vw,17px);
     font-weight: 400;
     padding: 12px 20px 10px;
     
     width: 100%;
     max-width: 260px;
-    min-height: 60px;
+    min-height: clamp(44px, 7vw, 60px);
     border-radius: 1px;
     border: 1px solid transparent;
     color: var(--white);
@@ -74,13 +75,19 @@ html:has(.lw-calc) {
     @extend %fieldset-reset;
 
     display: grid;
-    gap: 30px;
+    gap: clamp(16px, 2.4vw, 30px);
+
+    &-wrapper {
+      // order: 2;
+    }
 
     &-title {
       display: inline-block;
-      font-size: clamp(18px, 3vw, 26px);
+      font-size: clamp(14px, 2.4vw, 26px);
       font-weight: 700;
-      margin-bottom: 40px;
+      margin-bottom: 16px;
+      min-height: 54px;
+      @include text-truncate(2);
     }
 
     &[data-grid="1"] {
@@ -115,6 +122,11 @@ html:has(.lw-calc) {
     &[data-grid="6"] {
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       height: fit-content;
+
+      @include container-down('lw-calc', $tablet-lg-width) {
+        grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+        gap: 2px;
+      }
     }
 
     &[data-grid="5"] {
@@ -128,30 +140,74 @@ html:has(.lw-calc) {
       }
     }
 
-    // &[data-collection-textures-id] {
-    //   display: none;
-    // }
+    &[data-grid="7"] {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(30px, 2.4vw, 40px) clamp(40px, 3vw, 60px);
 
-    // &[data-collection-textures-id="1"] {
-    //   display: grid;
-    // }
+      @include container-down('lw-calc', $tablet-lg-width) {
+        grid-template-columns: 1fr;
+      }
+    }
   }
 
   &-bottom-section {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: 1fr minmax(360px, 1fr) 1fr;
+    gap: clamp(20px, 4vw, 40px);
     margin-top: 40px;
 
+    @include container-down('lw-calc', $tablet-width) {
+      grid-template-columns: 1fr minmax(280px, 1fr) 1fr;
+    }
+
+    @include container-down('lw-calc', 580px) {
+      grid-template-columns: 1fr;
+
+      .lw-calc__field-wrapper {
+        margin: 0 auto;
+
+        &:nth-child(2) {
+          order: 3;
+        }
+      }
+
+    }
+
     .lw-calc__field {
-      &:not([data-grid="5"]) {
-        gap: 30px 4px;
+      &-wrapper:has(.lw-calc__modal-field) {
+        .lw-calc-modal-opener {
+          display: none;
+          width: 100%;
+          max-width: 100%;
+          border: none;
+          background-color: var(--primary);
+        }
+
+        @include container-down('lw-calc', 580px) {
+          // order: 1;
+          width: 100%;
+          .lw-calc__modal-field {
+            display: none;
+          }
+
+          .lw-calc-modal-opener {
+            display: flex;
+          }
+        }
       }
 
       &-wrapper:nth-child(2) {
         position: sticky;
-        top: 200px;
+        top: 130px;
         height: fit-content;
+        max-width: 420px;
+        // order: 2;
+
+        @include container-down('lw-calc', 580px) {
+          position: static;
+          top: 0;
+        }
   
         .lw-calc__btn-row {
           justify-content: center;
@@ -172,7 +228,7 @@ html:has(.lw-calc) {
 
     width: 100%;
     height: 100%;
-    min-height: 103px;
+    min-height: clamp(80px, 17vw, 103px);
     border: 3px solid var(--black);
 
     &.viewed {
@@ -230,7 +286,7 @@ html:has(.lw-calc) {
       padding: 10px;
 
       font-weight: 700;
-      font-size: 16px;
+      font-size: clamp(12px, 2.4vw, 16px);
       overflow: hidden;
 
       span {
@@ -258,6 +314,85 @@ html:has(.lw-calc) {
       }
     }
   }
+
+  &__total {
+    display: grid;
+    grid-template-columns: 472px auto;
+    gap: clamp(40px, 3vw, 60px);
+
+    @include container-down('lw-calc', $laptop-width) {
+      grid-template-columns: 1fr;
+    }
+
+    &-complete-view {
+      position: sticky;
+      top: 140px;
+      height: fit-content;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 500px;
+
+      @include container-down('lw-calc', $laptop-width) {
+        position: static;
+        top: 0;
+      }
+      
+      &-section {
+        @extend %flex-column;
+        gap: 30px;
+
+        span {
+          font-size: 17px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    &-table {
+      @extend %flex-column;
+      container: lw-calc-total-table / inline-size;
+      
+      &-row {
+        display: grid;
+        gap: clamp(8px, 3.2vw, 120px);
+      }
+
+      &-row:not(:last-child) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &-row:last-child {
+        grid-template-columns: repeat(2, 1fr);
+
+        .lw-calc__total-table-data {
+          border: none;
+          font-size: clamp(18px, 3vw, 26px);
+          font-weight: 700;
+        }
+      }
+
+      &-data {
+        display: flex;
+        align-items: center;
+        font-size: clamp(14px, 2vw, 17px);;
+        text-wrap: balance;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--muted);
+
+        &:not(:first-child) {
+
+          text-align: right;
+          justify-content: flex-end;
+        }
+
+        &:last-child {
+          font-weight: 700;
+        }
+      }
+      
+    }
+  }
 }
 
 .lw-steps-wrapper {
@@ -265,25 +400,25 @@ html:has(.lw-calc) {
   top: 0;
   background-color: var(--site-bg-color);
   padding: 16px 0;
-  z-index: 3;
+  z-index: 5;
 
   &::after,
   &::before {
     content: '';
     position: absolute;
     top: 0;
-    width: 100%;
+    width: var(--container-offset);
     height: 100%;
     background-color: var(--site-bg-color);
     z-index: -1;
   }
 
   &::before {
-    left: -50%;
+    left: calc(-1 * var(--container-offset));
   }
 
   &::after {
-    left: 50%;
+    left: 100%;
   }
 }
 
@@ -327,6 +462,10 @@ html:has(.lw-calc) {
   }
 }
 
-
-
 /* purgecss end ignore */
+// [data-content="1"] {
+//   display: none !important;
+// }
+// [data-content="3"] {
+//   display: flex !important;
+// }

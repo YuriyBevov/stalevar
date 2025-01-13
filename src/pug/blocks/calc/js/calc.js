@@ -1,12 +1,18 @@
 import gsap from "gsap";
-// import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
-
 import { btnsDisabling } from './utils/btnsDisabling';
 import { createArrayForReversedAnimation } from "./utils/createArrayForReversedAnimation";
+import { priceFormatter } from "./utils/priceFormatter";
+
+const prices = document.querySelectorAll('[data-price]');
+
+if(prices) {
+  prices.forEach(price => {
+    price.textContent = priceFormatter(price.textContent) + " ₽";
+  });
+}
 
 let currentStepIndex = 0; 
 
@@ -351,3 +357,4 @@ if(textureCollectionDisablers) {
     });
   });
 }
+

@@ -6,7 +6,7 @@ mixin main-radio(data)
       
       .main-radio__footer
         span.main-radio__title!= data.name
-        span.main-radio__price!= data.price 
+        span(data-price= data.price ).main-radio__price!= data.price 
     input(
       type="radio" 
       id= data.id 

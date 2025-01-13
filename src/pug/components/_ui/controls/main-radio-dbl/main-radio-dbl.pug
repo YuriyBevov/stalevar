@@ -1,0 +1,18 @@
+mixin main-radio-dbl(data)
+  fieldset.main-radio-dbl
+    each item in data.controls
+      .main-radio-dbl-control
+        label(for= item.id)
+          .main-radio-dbl-control__header
+            img(src=`./assets/img/${item.img}.png` alt!= item.name width="240" height="240")
+          
+          .main-radio-dbl-control__footer
+            span.main-radio-dbl-control__title!= item.name
+            span(data-price= item.price).main-radio-dbl-control__price!= item.price
+        input(
+          type="radio" 
+          id= item.id 
+          name!= item.ctrlName  
+          value!= item.name 
+          checked= item.checked ? 'checked' : null
+        )
