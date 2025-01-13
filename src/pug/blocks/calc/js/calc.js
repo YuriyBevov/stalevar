@@ -185,7 +185,7 @@ const fillTotalPrice = () => {
     total += price ? Number(price.getAttribute('data-price')) : 0;
   });
 
-  tableRows[15].querySelector('.lw-calc__total-table-data:nth-child(2)').innerHTML = total + ' ₽';
+  tableRows[15].querySelector('.lw-calc__total-table-data:nth-child(2)').innerHTML = priceFormatter(total) + " ₽";
 }
 
 const fillCompleteViews = () => {
