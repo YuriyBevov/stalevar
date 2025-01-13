@@ -6,6 +6,29 @@ import { btnsDisabling } from './utils/btnsDisabling';
 import { createArrayForReversedAnimation } from "./utils/createArrayForReversedAnimation";
 import { priceFormatter } from "./utils/priceFormatter";
 
+// import * as htmlToImage from 'html-to-image';
+// import { toPng } from 'html-to-image';
+
+// const submitBtn = document.querySelector('.lw-calc__btn--submit');
+
+// submitBtn.addEventListener('click', () => {
+//   const node = document.querySelector('.lw-calc__total');
+//   const filter = (node) => {
+//     return (node.className !== 'lw-calc__btn-row');
+//   }
+
+//   htmlToImage.toPng(node, { filter: filter })
+//     .then(function (dataUrl) {
+//       var img = new Image();
+//       img.src = dataUrl;
+//       document.body.appendChild(img);
+//       console.log(img);
+//     })
+//     .catch(function (error) {
+//       alert('Что то пошло не так.. Попробуйте повторить!', error);
+//     });
+// });
+
 const prices = document.querySelectorAll('[data-price]');
 
 if(prices) {
@@ -142,12 +165,146 @@ const fillStepCardContent = (field) => {
   steps[currentStepIndex].querySelector('.lw-calc__step-value small').innerHTML = desc.join(', ');
 };
 
+const tableRows = document.querySelectorAll('[data-row]');
+
+const fillTableData = (fields, data) => {
+  fields[0].innerHTML = data[0];
+  fields[1].innerHTML = data[1];
+  fields[2].innerHTML = data[2];
+}
+
+const calc = document.querySelector('.lw-calc');
+
+const fillTotalPrice = () => {
+  const ctrls = calc.querySelectorAll('input:checked');
+  let total = 0;
+  ctrls.forEach(ctrl => {
+    const label = ctrl.parentNode.querySelector('label');
+    const price = label.querySelector('[data-price]');
+
+    total += price ? Number(price.getAttribute('data-price')) : 0;
+  });
+
+  tableRows[15].querySelector('.lw-calc__total-table-data:nth-child(2)').innerHTML = total + ' ₽';
+}
+
+const fillCompleteViews = () => {
+
+  const cloneNode = (node, view) => {
+    const isExist = view.querySelector('.lw-complete-view');
+    isExist ? isExist.remove() : null;
+    view.prepend(node.cloneNode(true));
+  }
+
+  cloneNode(
+    contentNodes[2].querySelector('.lw-complete-view'),
+    document.querySelector('.lw-complete-view--outer')
+  );
+
+  cloneNode(
+    contentNodes[3].querySelector('.lw-complete-view'),
+    document.querySelector('.lw-complete-view--inner')
+  );
+}
+
+const setControlValue = (field) => {
+  const ctrls = field.querySelectorAll('input:checked');
+  const stepId = field.getAttribute('data-content');
+
+  ctrls.forEach((ctrl, index) => {
+    const label = ctrl.parentNode.querySelector('label');
+    const name = label.querySelector('[data-name]');
+    const price = label.querySelector('[data-price]');
+
+    const nameHTML = name.innerHTML;
+    const priceHTML = price ? price.innerHTML : '0 ₽';
+
+    tableRows.forEach(row => {
+      const rowId = row.getAttribute('data-row');
+      let fields = row.querySelectorAll('.lw-calc__total-table-data');
+
+      const data = {
+        0: ctrl.name,
+        1: nameHTML,
+        2: priceHTML
+      }
+
+      if(stepId === '1' && rowId === '1' || stepId === '2' && rowId === '3') {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '1' && rowId === '2') {
+        fillTableData(fields, {
+          0: 'Замок',
+          1: nameHTML === 'Solo-1' ? 'Mettem 160, Mettem 713' : nameHTML === 'Solo-2' ? 'Гардиан 25.14' : nameHTML === 'Solo-3' ? 'Каle 257, Каle 282' : '-',
+          2: '0 ₽'
+        });
+      }
+      
+      // 2 step
+      if(stepId === '3' && rowId === '4' && index === 0) {
+        fillTableData(fields, data);
+      }
+
+      // 3 step
+      if(stepId === '3' && rowId === '5' && index === 1) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '3' && rowId === '6' && index === 2) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '3' && rowId === '7' && index === 3) {
+        fillTableData(fields, data);
+      }
+
+      // 4 step
+      if(stepId === '4' && rowId === '8' && index === 0) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '4' && rowId === '9' && index === 1) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '4' && rowId === '10' && index === 2) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '4' && rowId === '11' && index === 3) {
+        fillTableData(fields, data);
+      }
+
+      // 5 step
+      if(stepId === '5' && rowId === '12' && index === 0) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '5' && rowId === '13' && index === 1) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '5' && rowId === '14' && index === 2) {
+        fillTableData(fields, data);
+      }
+
+      if(stepId === '5' && rowId === '15' && index === 3) {
+        fillTableData(fields, data);
+        fillTotalPrice();
+        fillCompleteViews();
+      }
+    });
+  });
+}
+
 const checkValidityBeforeStepChanging = (field) => {
   const isValid = field.querySelector('input:checked');
 
   if(!!isValid) {
     fillStepCardContent(field);
     tlForwardCardAnimation(currentStepIndex);
+    setControlValue(field);
   }
 }
 

@@ -32,6 +32,7 @@
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
     "gsap": "file:gsap-bonus.tgz",
+    "html-to-image": "^1.11.11",
     "imask": "^7.6.1",
     "swiper": "^11.1.14"
   }

@@ -103,9 +103,6 @@ html:has(.lw-calc){
   cursor:initial;
   background-color:transparent;
 }
-.lw-calc__btn--submit{
-  display:none;
-}
 .lw-calc__btn.hidden{
   display:none;
 }

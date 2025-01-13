@@ -5,7 +5,7 @@ mixin main-radio(data)
         img(src=`./assets/img/${data.img}.png` alt!= data.name width="480" height="480")
       
       .main-radio__footer
-        span.main-radio__title!= data.name
+        span(data-name= data.name).main-radio__title!= data.name
         span(data-price= data.price ).main-radio__price!= data.price 
     input(
       type="radio" 

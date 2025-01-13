@@ -45,6 +45,7 @@
     border: 1px solid var(--muted);
     width: 72px;
     height: 72px;
+    aspect-ratio: 1/1;
 
     img {
       width: 60px;
@@ -71,12 +72,12 @@
   }
 
   &__title {
-    font-style: 17px;
+    font-size: clamp(12px, 2.4vw, 17px);
     font-weight: 400;
   }
 
   &__price {
-    font-style: 20px;
+    font-size: clamp(14px, 2.4vw, 20px);
     font-weight: 700;
   }
 

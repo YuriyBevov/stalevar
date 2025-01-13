@@ -496,6 +496,7 @@ img{
   border:1px solid var(--muted);
   width:72px;
   height:72px;
+  aspect-ratio:1/1;
 }
 .main-radio-xs__pattern img{
   width:60px;
@@ -520,11 +521,11 @@ img{
   gap:6px;
 }
 .main-radio-xs__title{
-  font-style:17px;
+  font-size:clamp(12px, 2.4vw, 17px);
   font-weight:400;
 }
 .main-radio-xs__price{
-  font-style:20px;
+  font-size:clamp(14px, 2.4vw, 20px);
   font-weight:700;
 }
 .main-radio-xs input[type=radio]{
@@ -728,9 +729,6 @@ html:has(.lw-calc){
 .lw-calc__btn--outlined:disabled{
   cursor:initial;
   background-color:transparent;
-}
-.lw-calc__btn--submit{
-  display:none;
 }
 .lw-calc__btn.hidden{
   display:none;

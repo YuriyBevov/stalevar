@@ -72,10 +72,6 @@ html:has(.lw-calc) {
       }
     }
 
-    &--submit {
-      display: none;
-    }
-
     &.hidden {
       display: none;
     }
@@ -448,6 +444,6 @@ html:has(.lw-calc) {
 // [data-content="1"] {
 //   display: none !important;
 // }
-// [data-content="3"] {
+// [data-content="6"] {
 //   display: flex !important;
 // }

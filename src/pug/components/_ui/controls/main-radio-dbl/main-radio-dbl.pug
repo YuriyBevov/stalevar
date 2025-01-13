@@ -7,7 +7,7 @@ mixin main-radio-dbl(data)
             img(src=`./assets/img/${item.img}.png` alt!= item.name width="240" height="240")
           
           .main-radio-dbl-control__footer
-            span.main-radio-dbl-control__title!= item.name
+            span(data-name= item.name).main-radio-dbl-control__title!= item.name
             span(data-price= item.price).main-radio-dbl-control__price!= item.price
         input(
           type="radio" 
